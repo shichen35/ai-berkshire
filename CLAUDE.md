@@ -12,7 +12,14 @@ skills/          — 投研 Skill 定义（.md），复制到 ~/.claude/commands
 tools/           — 辅助工具（financial_rigor.py 精确计算、twstock_data.py 台股FinMind取数）
 reports/         — 投资研究报告输出
 assets/          — 图片等静态资源
+portfolio/       — 私有 git submodule（shichen35/portfolio），存放含账户信息/持仓明细的个人 PII 文档，不进入公开仓库
 ```
+
+## PII / 个人隐私文档处理
+
+- 涉及真实账户信息（账户尾号、总资产、逐笔持仓股数与成本价等）的文档一律存入 `portfolio/` 子模块，不放入 `reports/` 或其他公开路径
+- `portfolio/` 是独立私有仓库（submodule），修改后需单独 `cd portfolio && git add/commit/push`，再回到根目录提交子模块指针更新
+- 例外：`实盘记录/` 目录按"公开决策、不公开规模"原则保留在公开仓库（只含操作方向/价格/组合权重，不含股数与金额）
 
 ## 报告目录结构
 
@@ -50,7 +57,7 @@ reports/
 | /earnings-review | `{公司名}-earnings-{期间}.md` | `reports/腾讯/腾讯-earnings-2025Q4.md` |
 | /earnings-team | `{公司名}/` 目录内含4个大师视角+研究底稿+公众号文章+读者评审 | `reports/腾讯/腾讯-earnings-2025Q4.md`（公众号定稿） |
 | /thesis-tracker | `{公司名}-thesis.md`（长期维护） | `reports/腾讯/腾讯-thesis.md` |
-| /portfolio-review | `portfolio-latest.md`（根目录，持续更新） | `reports/portfolio-latest.md` |
+| /portfolio-review | `portfolio-latest.md`（私有子模块，持续更新） | `portfolio/portfolio-latest.md` |
 | /management-deep-dive | `{公司名}-management-{YYYYMMDD}.md` | `reports/腾讯/腾讯-management-20260409.md` |
 
 ## /investment-team 文件结构
